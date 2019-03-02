@@ -13,7 +13,7 @@ app.use(async ctx => {
 
 async function show() {
   try {
-    const itemData = await pool.query(`SELECT * FROM avenyda.User WHERE id=1`)
+    const itemData = await pool.query(`SELECT * FROM avenyda.Vehicle WHERE owner_id=1`)
     return itemData
   } catch (error) {
     console.log(error)
