@@ -1,8 +1,13 @@
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const pool = require('../../../DB/db')
+const cors = require('@koa/cors');
 
 const app = new Koa()
+let options = {
+  origin:"*"
+};
+app.use(cors(options));
 app.use(bodyParser())
 
 app.use(async ctx => {
