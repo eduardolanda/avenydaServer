@@ -1,21 +1,13 @@
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const pool = require('../../../DB/db')
-
-app.all('/*', function(req, res, next) {
-  // CORS headers
-  res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  // Set custom headers for CORS
-  res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
-  if (req.method == 'OPTIONS') {
-    res.status(200).end();
-  } else {
-    next();
-  }
-});
+const cors = require('@koa/cors');
 
 const app = new Koa()
+let options = {
+  origin:"*"
+};
+app.use(cors(options));
 app.use(bodyParser())
 
 app.use(async ctx => {
